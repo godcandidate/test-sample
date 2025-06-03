@@ -1,13 +1,17 @@
 name: PR Validation
 
 on:
-  push:
+  pull_request_review:
+    types: [submitted]
     branches: [dev]
 
 jobs:
   validate-pr:
     name: Validate Pull Request
     runs-on: ubuntu-latest
+    # Only run if this is a push to dev OR if the PR review was approved
+    if: |
+      github.event_name == 'pull_request_review' && github.event.review.state == 'approved'
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
