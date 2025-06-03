@@ -3,7 +3,6 @@ name: PR Validation
 on:
   pull_request_review:
     types: [submitted]
-    branches: [dev]
 
 jobs:
   validate-pr:
